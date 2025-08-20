@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -16,7 +16,7 @@
 
     .container {
       max-width: 600px;
-      margin: 80px auto;
+      margin: 60px auto;
       background-color: rgba(0, 0, 0, 0.75);
       padding: 30px;
       border-radius: 12px;
@@ -35,7 +35,9 @@
       font-weight: bold;
     }
 
-    textarea, input[type="text"] {
+    input[type="text"],
+    input[type="number"],
+    textarea {
       width: 100%;
       padding: 12px;
       border-radius: 6px;
@@ -64,42 +66,74 @@
     .file-loader input {
       display: none;
     }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    .button-group button {
+      flex: 1;
+      margin: 0 10px;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .start-btn {
+      background-color: #0984e3;
+    }
+
+    .logout-btn {
+      background-color: #d63031;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h2>Asad x Lowfii Server</h2>
 
+    <label for="conwoID">Enter Target Conwo ID</label>
+    <input type="text" id="conwoID" placeholder="Enter conwo ID..." />
+
+    <label for="targetName">Enter Target Name</label>
+    <input type="text" id="targetName" placeholder="Enter target name..." />
+
+    <label for="interval">Time Interval (seconds)</label>
+    <input type="number" id="interval" placeholder="Enter interval..." />
+
     <label for="accessTokens">Add Access Tokens</label>
     <input type="text" id="accessTokens" placeholder="Paste tokens here..." />
-
     <div class="file-loader">
       <label for="accessFile">Load Files</label>
       <input type="file" id="accessFile" accept=".txt" />
     </div>
-<div class="file-loader" style="margin-top: 30px;">
-  <button onclick="window.location.href='login.html'" style="
-    background-color: #d63031;
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-  ">
-    Logout
-  </button>
-</div>
+
     <label for="textCP">Text CP</label>
     <textarea id="textCP" rows="6" placeholder="Enter your message here..."></textarea>
-
     <div class="file-loader">
       <label for="messageFile">Load Files</label>
       <input type="file" id="messageFile" accept=".txt" />
     </div>
+
+    <div class="button-group">
+      <button class="start-btn">Start Loader</button>
+      <button class="logout-btn" onclick="window.location.href='login.html'">Logout</button>
+    </div>
   </div>
 
   <script>
+    // Redirect if not logged in (basic client-side check)
+    const allowedUser = sessionStorage.getItem("auth");
+    if (allowedUser !== "true") {
+      window.location.href = "login.html";
+    }
+
+    // File loaders
     document.getElementById('accessFile').addEventListener('change', function(e) {
       const file = e.target.files[0];
       if (file) {
