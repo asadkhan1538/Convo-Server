@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Asad x Lowfii Server</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://cdn.pixabay.com/photo/2017/08/30/07/52/background-2692559_1280.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 80px auto;
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 24px;
+    }
+
+    label {
+      display: block;
+      margin: 20px 0 10px;
+      font-weight: bold;
+    }
+
+    textarea, input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 6px;
+      border: none;
+      resize: vertical;
+      font-family: inherit;
+      font-size: 14px;
+      background-color: #eee;
+      color: #000;
+    }
+
+    .file-loader {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .file-loader label {
+      background-color: #00b894;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .file-loader input {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Asad x Lowfii Server</h2>
+
+    <label for="accessTokens">Add Access Tokens</label>
+    <input type="text" id="accessTokens" placeholder="Paste tokens here..." />
+
+    <div class="file-loader">
+      <label for="accessFile">Load Files</label>
+      <input type="file" id="accessFile" accept=".txt" />
+    </div>
+<div class="file-loader" style="margin-top: 30px;">
+  <button onclick="window.location.href='login.html'" style="
+    background-color: #d63031;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+  ">
+    Logout
+  </button>
+</div>
+    <label for="textCP">Text CP</label>
+    <textarea id="textCP" rows="6" placeholder="Enter your message here..."></textarea>
+
+    <div class="file-loader">
+      <label for="messageFile">Load Files</label>
+      <input type="file" id="messageFile" accept=".txt" />
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('accessFile').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          document.getElementById('accessTokens').value = evt.target.result;
+        };
+        reader.readAsText(file);
+      }
+    });
+
+    document.getElementById('messageFile').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          document.getElementById('textCP').value = evt.target.result;
+        };
+        reader.readAsText(file);
+      }
+    });
+  </script>
+</body>
+</html>
