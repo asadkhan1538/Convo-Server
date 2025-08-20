@@ -84,8 +84,9 @@
       const user = document.getElementById('username').value;
       const pass = document.getElementById('password').value;
       if (user === 'LowfixAsad' && pass === 'Cutiw@cs123') {
-        window.location.href = 'index.html';
-      } else {
+  sessionStorage.setItem("auth", "true");
+  window.location.href = 'index.html';
+    } else {
         alert('Incorrect credentials');
       }
     });
