@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -36,8 +36,7 @@
       letter-spacing: 1px;
     }
 
-    .login-box input[type="text"],
-    .login-box input[type="password"] {
+    .login-box input {
       width: 100%;
       padding: 12px;
       margin: 10px 0;
@@ -55,11 +54,6 @@
       color: white;
       font-size: 16px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .login-box button:hover {
-      background-color: #019875;
     }
 
     .footer {
@@ -73,15 +67,28 @@
   <div class="login-container">
     <div class="login-box">
       <h2>Asad x Lowfii Server</h2>
-      <form>
-        <input type="text" placeholder="Enter your ID..." required />
-        <input type="password" placeholder="Password" required />
+      <form id="loginForm">
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="password" id="password" placeholder="Password" required />
         <button type="submit">Login</button>
       </form>
       <div class="footer">
-        © 2025 Asad x Lowfi Server All Rights Reserved || 2k25 Convo King Lowfi x Asad
+        © 2025 Lowfi x Asad Convo Message Server || Convo King Asadx
       </div>
     </div>
   </div>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const user = document.getElementById('username').value;
+      const pass = document.getElementById('password').value;
+      if (user === 'LowfixAsad' && pass === 'Cutiw@cs123') {
+        window.location.href = 'index.html';
+      } else {
+        alert('Incorrect credentials');
+      }
+    });
+  </script>
 </body>
-  </html>
+</html>
